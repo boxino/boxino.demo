@@ -40,6 +40,7 @@ def main_list(params):
         settings(params)
 
     items = api.get_list(plugintools.get_setting("username") , plugintools.get_setting("password"))   
+    import os
     for item in items:
             plugintools.add_item( action="livetv_by_genre", title=item["title"] , url=item["url"], thumbnail=api.get_base_url()+"img/package/"+item["title"]+".png", fanart=os.path.join(THUMBNAIL_PATH,"fanart2.jpg") , folder=True )
 
@@ -68,32 +69,37 @@ def main_list(params):
 
 # Settings dialog
 def settings(params):
-    plugintools.log("ruyaiptv.settings "+repr(params))
-
-    if plugintools.get_setting("pincode")!="":
-        text = plugintools.keyboard_input(default_text="", title="Enter PIN Code")
-
-        if text==plugintools.get_setting("pincode"):
-            plugintools.open_settings_dialog()
-
-    else:
-        plugintools.open_settings_dialog()
+    plugintools.log("boxino.settings "+repr(params))
+    plugintools.open_settings_dialog()
 
 def livetv_by_genre(params):
     plugintools.log("boxino.livetv_by_genre "+repr(params))
 
-
+    next_page = get_next_page(params.get("page"))
     genre = params.get("url")
-
+        
     items = api.get_livetv_channels_by_genre(genre)
     for item in items:
         plugintools.add_item( action="play_livetv", title=item["title"] , url=item["url"] , thumbnail=item["thumbnail"], plot=item["plot"], fanart=os.path.join(THUMBNAIL_PATH,"fanart2.jpg") , isPlayable=True, folder=False )
+    if len(items)>=MAX_ITEMS_PER_PAGE:
+        k = genre.rfind("/")
+        genre = genre[:k] + "/%d" %(int(genre[k+1:]) + int(next_page))
+        plugintools.add_item( action="livetv_by_genre", title=">> Next page" , url=genre , page=next_page, fanart=os.path.join(THUMBNAIL_PATH,"fanart2.jpg") , folder=True )
     xbmc.executebuiltin("Container.SetViewMode(51)")
 
 def play_livetv(params):
     plugintools.log("boxino.play_livetv "+repr(params))
 
     plugintools.play_resolved_url( params.get("title"), params.get("url") )
+
+
+def get_next_page(current_page):
+    if current_page=="":
+        current_page="0"
+
+    next_page = str(int(current_page)+30)
+
+    return next_page
 
 ########################################## Run This Plugin ###########################
 run()

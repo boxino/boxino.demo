@@ -35,13 +35,10 @@ def get_livetv_channels_by_genre(genre):
 
     # Service call
     service_url = genre
-    #service_parameters = urllib.urlencode({'token':token,'genre':genre,'num_page':num_page,'per_page':per_page})
     body , response_headers = plugintools.read_body_and_headers( service_url )
 
     # Response parsing
-    plugintools.log("boxino.api.get_livetv_channels_by_genre body="+repr(body))
     items = parse_livetv_channels(body)
-    plugintools.log("boxino.api.get_livetv_channels_by_genre items="+repr(body))
 
     return items
 

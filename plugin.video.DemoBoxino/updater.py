@@ -46,7 +46,7 @@ def check_for_updates():
 
                     import ziptools
                     unzipper = ziptools.ziptools()
-                    destpathname = xbmc.translatePath( "special://home/addons/plugin.video.supMC")
+                    destpathname = xbmc.translatePath( "special://home/addons/plugin.video.DemoBoxino")
                     plugintools.log("boxino.updater destpathname=%s" % destpathname)
                     unzipper.extract( local_file_name , destpathname )
                     

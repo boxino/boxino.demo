@@ -73,6 +73,7 @@ def parse_livetv_channels(body):
     for channel in channels:
             item = {}
             item["title"] = plugintools.find_single_match(channel,"<name>([^<]+)</name>")
+            item["id"] = plugintools.find_single_match(channel,"<id>([^<]+)</id>")
             item["url"] = plugintools.find_single_match(channel,"<stream_url>([^<]+)</stream_url>")            
             item["thumbnail"] = plugintools.find_single_match(channel,"<piconname>([^<]+)</piconname>")
             item["plot"] = plugintools.find_single_match(channel,"<plot>([^<]+)</plot>")

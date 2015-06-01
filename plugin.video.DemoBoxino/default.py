@@ -80,7 +80,7 @@ def livetv_by_genre(params):
         
     items = api.get_livetv_channels_by_genre(genre)
     for item in items:
-        plugintools.add_item( action="play_livetv", title=item["title"] , url=item["url"] , thumbnail=item["thumbnail"], plot=item["plot"], fanart=os.path.join(THUMBNAIL_PATH,"fanart2.jpg") , isPlayable=True, folder=False )
+        plugintools.add_item( action="play_livetv", extra=item["id"] , title=item["title"] , url=item["url"] , thumbnail=item["thumbnail"], plot=item["plot"], fanart=os.path.join(THUMBNAIL_PATH,"fanart2.jpg") , isPlayable=True, folder=False )
     if len(items)>=MAX_ITEMS_PER_PAGE:
         k = genre.rfind("/")
         genre = genre[:k] + "/%d" %(int(genre[k+1:]) + int(next_page))
@@ -90,7 +90,7 @@ def livetv_by_genre(params):
 def play_livetv(params):
     plugintools.log("boxino.play_livetv "+repr(params))
 
-    plugintools.play_resolved_url( params.get("title"), params.get("url") )
+    plugintools.play_resolved_url( params.get("title"), params.get("url"), params.get("extra") )
 
 
 def get_next_page(current_page):
@@ -103,9 +103,3 @@ def get_next_page(current_page):
 
 ########################################## Run This Plugin ###########################
 run()
-
-
-
-  
-
-    

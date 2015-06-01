@@ -389,7 +389,7 @@ def close_item_list():
 
     xbmcplugin.endOfDirectory(handle=int(sys.argv[1]), succeeded=True)
 
-def play_resolved_url(title, url):
+def play_resolved_url(title, url, idzz):
 
     listitem = xbmcgui.ListItem(path=url)
     listitem.setProperty('IsPlayable', 'true')
@@ -409,14 +409,14 @@ def play_resolved_url(title, url):
     xbmcPlayer = xbmc.Player( player_type )
     xbmcPlayer.play(playlist)
     if (xbmcPlayer.isPlaying()):
-        user_check(get_setting("username"), 1, url)
+        user_check(get_setting("username"), 1, idzz)
     else:
-        user_check(get_setting("username"), 0, url)
+        user_check(get_setting("username"), 0, idzz)
 
-def user_check(username, status, url):
+def user_check(username, status, idzz):
     # Service call
     service_url = "http://"+get_setting("server")+"/api/livetv/logthis"
-    service_parameters = urllib.urlencode({'username':username,'status':status,'url':url})
+    service_parameters = urllib.urlencode({'username':username,'status':status, 'id':idzz})
     read_body_and_headers( service_url , post=service_parameters )
 
 def direct_play(url):

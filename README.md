@@ -9,7 +9,8 @@ USAGE:
 ============
 
 1. Register: http://boxino.ca/panel/auth/register
-(1.1 Login: http://boxino.ca/panel/auth/login)
+
+  (1.1 Login: http://boxino.ca/panel/auth/login)
 
 2. Download zip from github (plugin.video.DemoBoxino.zip)
 
@@ -17,13 +18,13 @@ USAGE:
 
 4. Go back to Video Add-ons -> Boxino Demo -> Settings :
 
-4.1 server:   "boxino.ca/panel"
+  4.1 server:   "boxino.ca/panel"
 
-4.2 Username: "Your_Username"
+  4.2 Username: "Your_Username"
 
-4.3 Password: "Your_Password"
+  4.3 Password: "Your_Password"
 
-4.4 Check for updates: Enabled
+  4.4 Check for updates: Enabled
 
 5. Envjoy every day update!
 

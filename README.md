@@ -28,4 +28,4 @@ USAGE:
 
 5. Envjoy every day update!
 
-Note that all channels are scrapped from internet and do not have any control.
+Note that all channels are scrapped from internet and do not have any control on it.

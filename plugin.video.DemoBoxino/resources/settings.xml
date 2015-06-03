@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-    <setting id="server" type="text" option="writeable" label="30001" default="server.example.com"/>
+    <setting id="server" type="text" option="writeable" label="30001" default="boxino.ca/panel"/>
     <setting id="username" type="text" option="writeable" label="30002" default=""/>
     <setting id="password" type="text" option="writeable,hidden" label="30003" default=""/>
     <setting id="debug" type="bool" label="Enable logs for problem reporting" default="false"/>
